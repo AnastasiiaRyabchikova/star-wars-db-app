@@ -1,0 +1,31 @@
+.header {
+    padding: 10px 0;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    font-size: 2rem;
+    margin-right: 2em;
+}
+
+.nav-item {
+    padding: 0.7em 1em;
+    border-radius: 3px;
+}
+
+.nav-item:hover {
+    background-color: rgba(100, 100, 100, 0.3);
+    text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    .logo {
+        margin-right: 0;
+    }
+    .header {
+        flex-direction: column;
+        align-items: center;
+    }
+}

@@ -1,0 +1,33 @@
+.item-details {
+    display: flex;
+    align-items: center;
+    padding: 2rem;
+}
+
+.item-details__image {
+    max-width: 180px;
+    margin-right: 1rem;
+}
+
+.item-details__image img {
+    display: block;
+    width: 100%;
+}
+
+.item-details__wrap {
+    width: 100%;
+}
+
+.item-list-wrap {
+    margin-bottom: 2rem;
+}
+
+@media (max-width: 460px) {
+    .item-details {
+        flex-direction: column;
+    }
+
+    .item-details__image {
+        margin: 0 auto 1rem;
+    }
+}
