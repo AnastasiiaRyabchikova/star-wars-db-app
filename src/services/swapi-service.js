@@ -15,6 +15,7 @@ export default class SwapiService {
     }
     async getPersonById(id) {
       const res = await this.getResource(`/people/${id}`);
+      console.log(this._transformPerson(res));
       return this._transformPerson(res);
     }
   

@@ -6,7 +6,7 @@ import ItemDetails from '../item-details';
 
 export default class App extends React.Component {
     state = {
-        selectedPerson: null
+        selectedPerson: 5
     }
     onPersonSelected = (id) => {
         console.log(id);
