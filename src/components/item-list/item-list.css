@@ -1,0 +1,6 @@
+.list-group__item {
+    cursor: pointer;
+}
+.list-group__item:hover {
+    opacity: 0.5;
+}

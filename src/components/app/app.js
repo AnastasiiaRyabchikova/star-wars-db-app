@@ -5,7 +5,16 @@ import ItemList from '../item-list';
 import ItemDetails from '../item-details';
 
 export default class App extends React.Component {
+    state = {
+        selectedPerson: null
+    }
+    onPersonSelected = (id) => {
+        console.log(id);
+        this.setState({selectedPerson: id});
+    }
     render() {
+        const {selectedPerson} = this.state;
+
         return (
             <div className='app container'>
                 <Header />
@@ -13,11 +22,11 @@ export default class App extends React.Component {
                 <div>
                     <div className='row'>
                         <div className='col-12 col-lg-6 item-list-wrap'> 
-                            <ItemList />
+                            <ItemList onItemSelected={this.onPersonSelected}/>
                         </div>
 
                         <div className='col-12 col-lg-6'> 
-                            <ItemDetails />
+                            <ItemDetails personId={selectedPerson}/>
                         </div>
                     </div>
                 </div>
