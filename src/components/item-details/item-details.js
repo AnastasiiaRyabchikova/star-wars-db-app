@@ -3,6 +3,7 @@ import './item-details.css';
 import React from 'react';
 import LoadIndicator from '../load-indicator'; 
 import ErrorIndicator from '../error-indicator'; 
+import ErrorButton from '../error-button'; 
 import SwapiService from '../../services/swapi-service'; 
 
 export default class ItemDetails extends React.Component {
@@ -60,6 +61,8 @@ const ItemDetailsView = (props) => {
                 <li className='list-group-item'><span>Birth Year</span><span>{birthYear}</span></li>
                 <li className='list-group-item'><span>Eye Color</span><span>{eyeColor}</span></li>
             </ul>
+            <ErrorButton />
+
         </div>
     </React.Fragment>
     )
