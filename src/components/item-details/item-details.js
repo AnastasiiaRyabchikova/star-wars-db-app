@@ -29,7 +29,6 @@ export default class ItemDetails extends React.Component {
         this.swapiService
             .getPersonById(personId)
             .then((person) => {
-                console.log(person);
                 this.setState({person, error: false, loading: false});
             })
             .catch(() => this.setState({error: true, loading: false}));
