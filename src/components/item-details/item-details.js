@@ -9,34 +9,42 @@ import SwapiService from '../../services/swapi-service';
 export default class ItemDetails extends React.Component {
     swapiService = new SwapiService();
     state = {
-        person: null,
+        item: null,
         loading: true,
-        error: false
+        error: false,
+        image: null
     }
     componentDidMount() {
-        this.updatePerson();
+        this.updateItem();
     }
     componentDidUpdate(prevProps) {
-        if(prevProps.personId !== this.props.personId) {
-            this.updatePerson();
+        if(prevProps.itemId !== this.props.itemId) {
+            this.updateItem();
             this.setState({loading: true});
         }
     }
-    updatePerson() {
-        const {personId} = this.props;
+    updateItem() {
+        const {itemId, getData, getImageURL} = this.props;
+        console.log(itemId);
+        if(!itemId) return;
         
-        if(!personId) return;
-        this.swapiService
-            .getPersonById(personId)
-            .then((person) => {
-                this.setState({person, error: false, loading: false});
+        getData(itemId)
+            .then((item) => {
+                this.setState(
+                    {
+                        item,
+                        image: getImageURL(itemId),
+                        error: false,
+                        loading: false
+                    }
+                );
             })
             .catch(() => this.setState({error: true, loading: false}));
     }
     render() {
-        const {person, loading, error} = this.state;
+        const {item, loading, error, image} = this.state;
         const output = error ? <ErrorIndicator/> :
-                        !loading ? <ItemDetailsView person={person}/>  :
+                        !loading ? <ItemDetailsView item={item} image={image}/>  :
                         <LoadIndicator/>;
         return (
             <div className='item-details jumbotron'>
@@ -46,12 +54,13 @@ export default class ItemDetails extends React.Component {
     }
 }
 
-const ItemDetailsView = (props) => {
-    const {id, gender, birthYear, eyeColor, name} = props.person;
+const ItemDetailsView = ({item, image}) => {
+    const {gender, birthYear, eyeColor, name} = item;
+    console.log(image)
     return (
     <React.Fragment>
         <div className='item-details__image'>
-            <img src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`} alt={name}/>
+            <img src={image} alt={name}/>
         </div>
         <div className='item-details__wrap'>
             <h2>{name}</h2>

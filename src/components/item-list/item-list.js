@@ -20,7 +20,8 @@ export default class ItemList extends React.Component {
     }
     render() {
         const {peopleList, error} = this.state;
-        const {onItemSelected, renderItem} = this.props;
+        const {onItemSelected} = this.props;
+        const renderItem = this.props.children;
         if(!peopleList) {
             return <LoadIndicator />;
         }
@@ -28,18 +29,18 @@ export default class ItemList extends React.Component {
             return <ErrorIndicator />;
         }
         return (
-            <ul className='list-group'>
-                {
-                    peopleList.map(({id, name, gender, birthYear}) => (
-                        <Item 
-                            key={id}
-                            id={id}
-                            onItemSelected={onItemSelected}
-                            content={renderItem({name, gender, birthYear})}
-                        />
-                    ))
-                }
-            </ul>
+                <ul className='list-group'>
+                    {
+                        peopleList.map(({id, name, gender, birthYear}) => (
+                            <Item 
+                                key={id}
+                                id={id}
+                                onItemSelected={onItemSelected}
+                                content={renderItem({name, gender, birthYear})}
+                            />
+                        ))
+                    }
+                </ul>
         )
     }
 }

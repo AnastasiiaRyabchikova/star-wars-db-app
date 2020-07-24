@@ -4,13 +4,12 @@ import React from 'react';
 
 import SwapiService from '../../services/swapi-service'; 
 import LoadIndicator from '../load-indicator'; 
-import ErrorIndicator from '../error-indicator'; 
+import ErrorBoundry from '../error-boundry';
 export default class RandomPlanet extends React.Component {
     swapiService = new SwapiService();
     state = {
         planet: {},
-        loading: true,
-        error: false
+        loading: true
     }
     componentDidMount() {
         this.updatePlanet()
@@ -33,15 +32,16 @@ export default class RandomPlanet extends React.Component {
             .catch(this.onPlanetDisLoaded);
     }
     render() {
-        const { loading, planet, error } = this.state;
-        const output =  error ? <ErrorIndicator/> :
-                        !loading ? <PlanetView planet ={planet}/>  :
+        const { loading, planet } = this.state;
+        const output = !loading ? <PlanetView planet ={planet}/>  :
                         <LoadIndicator/>;
 
         return (
-            <div className='jumbotron random-planet'>
-                {output}
-            </div>
+            <ErrorBoundry>
+                <div className='jumbotron random-planet'>
+                    {output}
+                </div>
+            </ErrorBoundry>
         )
     }
 }

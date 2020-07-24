@@ -1,32 +1,30 @@
 import React from 'react';
 import Header from '../header';
 import RandomPlanet from '../random-planet';
-import PeoplePage from '../people-page';
-
+// import PeoplePage from '../people-page';
+import ItemDetails from '../item-details';
 import ErrorButton from '../error-button';
-import ErrorIndicator from '../error-indicator';
+import ErrorBoundry from '../error-boundry';
+import Row from '../row';
+import SwapiService from '../../services/swapi-service'
 
 export default class App extends React.Component {
-    state = {
-        hasError: false
-    }
-    componentDidCatch() {
-        this.setState({hasError: true});
-    }
+    swapiService = new SwapiService()
     render() {
-        const {hasError} = this.state;
-        if(hasError) {
-            return <ErrorIndicator/>; 
-        }
+        const {getPersonById, getStarShipById, getPersonImage, getStarShipImage} = this.swapiService;
+        const personDetails = <ItemDetails itemId={7} getData={getPersonById} getImageURL={getPersonImage}/>;
+        const starShipDetails = <ItemDetails itemId={11} getData={getStarShipById} getImageURL={getStarShipImage}/>;
+
         return (
-            <div className='app container'>
-                <Header />
-                <RandomPlanet />
-                <ErrorButton />
-                <PeoplePage/>
-                <PeoplePage/>
-                <PeoplePage/>
-            </div>
+            <ErrorBoundry>
+                <div className='app container'>
+                    <Header />
+                    <RandomPlanet />
+                    <ErrorButton />
+                    {/* <PeoplePage/> */}
+                    <Row left={personDetails} right={starShipDetails}/>
+                </div>
+            </ErrorBoundry>
         )
     }
 }
