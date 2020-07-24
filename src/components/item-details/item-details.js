@@ -6,6 +6,15 @@ import ErrorIndicator from '../error-indicator';
 import ErrorButton from '../error-button'; 
 import SwapiService from '../../services/swapi-service'; 
 
+const Record = ({item, label, field}) => {
+    console.log(label);
+    return (
+        <li className='list-group-item'>{label}<span></span><span> {item[field]}</span></li>
+    )
+}
+
+export { Record };
+
 export default class ItemDetails extends React.Component {
     swapiService = new SwapiService();
     state = {
@@ -30,6 +39,7 @@ export default class ItemDetails extends React.Component {
         
         getData(itemId)
             .then((item) => {
+                console.log(item);
                 this.setState(
                     {
                         item,
@@ -40,38 +50,44 @@ export default class ItemDetails extends React.Component {
                 );
             })
             .catch(() => this.setState({error: true, loading: false}));
+
     }
     render() {
         const {item, loading, error, image} = this.state;
-        const output = error ? <ErrorIndicator/> :
-                        !loading ? <ItemDetailsView item={item} image={image}/>  :
-                        <LoadIndicator/>;
+
+        if (error) {
+            return (
+                <div className='item-details jumbotron'>
+                    <ErrorIndicator/>;
+                </div>
+            )
+        }
+
+        if (loading) {
+            return (
+                <div className='item-details jumbotron'>
+                    <LoadIndicator/>
+                </div>
+            )
+        }
+
+        const {gender, birthYear, eyeColor, name} = item;
+
         return (
             <div className='item-details jumbotron'>
-                {output}
+                <div className='item-details__image'>
+                    <img src={image} alt={name}/>
+                </div>
+                <div className='item-details__wrap'>
+                    <h2>{name}</h2>
+                    <ul className='list-group list-group-flush'>
+                        {React.Children.map(this.props.children, (child)=> {
+                            return React.cloneElement(child, {item});
+                        })}
+                    </ul>
+                    <ErrorButton />
+                </div>
             </div>
         );
     }
-}
-
-const ItemDetailsView = ({item, image}) => {
-    const {gender, birthYear, eyeColor, name} = item;
-    console.log(image)
-    return (
-    <React.Fragment>
-        <div className='item-details__image'>
-            <img src={image} alt={name}/>
-        </div>
-        <div className='item-details__wrap'>
-            <h2>{name}</h2>
-            <ul className='list-group list-group-flush'>
-                <li className='list-group-item'><span>Gender</span><span>{gender}</span></li>
-                <li className='list-group-item'><span>Birth Year</span><span>{birthYear}</span></li>
-                <li className='list-group-item'><span>Eye Color</span><span>{eyeColor}</span></li>
-            </ul>
-            <ErrorButton />
-
-        </div>
-    </React.Fragment>
-    )
 }
