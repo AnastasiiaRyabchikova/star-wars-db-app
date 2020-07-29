@@ -38,7 +38,6 @@ export default class SwapiService {
     }
 
     getPersonImage = (id) => {
-      console.log(id);
       return `${this._imageBase}/characters/${id}.jpg`
     }
 

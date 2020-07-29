@@ -7,7 +7,6 @@ import ErrorButton from '../error-button';
 import SwapiService from '../../services/swapi-service'; 
 
 const Record = ({item, label, field}) => {
-    console.log(label);
     return (
         <li className='list-group-item'>{label}<span></span><span> {item[field]}</span></li>
     )
@@ -34,12 +33,10 @@ export default class ItemDetails extends React.Component {
     }
     updateItem() {
         const {itemId, getData, getImageURL} = this.props;
-        console.log(itemId);
         if(!itemId) return;
         
         getData(itemId)
             .then((item) => {
-                console.log(item);
                 this.setState(
                     {
                         item,

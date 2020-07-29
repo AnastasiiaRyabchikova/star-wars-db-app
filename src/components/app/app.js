@@ -1,11 +1,11 @@
 import React from 'react';
 import Header from '../header';
 import RandomPlanet from '../random-planet';
-// import PeoplePage from '../people-page';
+import PeoplePage from '../people-page';
 import {ItemDetails, Record} from '../item-details';
 import ErrorButton from '../error-button';
 import ErrorBoundry from '../error-boundry';
-import Row from '../row';
+// import Row from '../row';
 import SwapiService from '../../services/swapi-service'
 
 
@@ -42,8 +42,8 @@ export default class App extends React.Component {
                     <Header />
                     <RandomPlanet />
                     <ErrorButton />
-                    {/* <PeoplePage/> */}
-                    <Row left={personDetails} right={starShipDetails}/>
+                    <PeoplePage/>
+                    {/* <Row left={personDetails} right={starShipDetails}/> */}
                 </div>
             </ErrorBoundry>
         )
