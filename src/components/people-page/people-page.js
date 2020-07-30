@@ -1,52 +1,37 @@
 import './people-page.css';
-import ItemList from '../item-list';
-import {ItemDetails, Record} from '../item-details';
 import React from 'react';
 
 import SwapiService from '../../services/swapi-service'; 
 import Row from '../row';
 import ErrorBoundry from '../error-boundry';
 
+import {
+    PersonDetails,
+    PlanetDetails,
+    StarshipDetails,
+    PersonList,
+    PlanetList,
+    StarshipList
+} from '../sw-components';
+
+
 export default class PeoplePage extends React.Component {
     swapiService = new SwapiService();
 
     state = {
-        selectedPerson: 5
+        selected: 5
     }
     onPersonSelected = (id) => {
-        this.setState({selectedPerson: id});
+        this.setState({selected: id});
     }
     render() {
-        const {selectedPerson} = this.state;
-        const {getPersonById, getStarShipById, getPersonImage, getStarShipImage} = this.swapiService;
+        const {selected} = this.state;
 
-        const itemDetails = (
-            <ItemDetails
-                itemId={selectedPerson}
-                getData={getPersonById}
-                getImageURL={getPersonImage}
-            >
-                <Record label="Eye Color" field="eyeColor"/>
-                <Record label="Gender" field="gender"/>
-
-            </ItemDetails>
-        );
-
-        const itemList = (<ItemList 
-            
-            getData={this.swapiService.getAllPeople} 
-            onItemSelected={this.onPersonSelected}
-        >
-        {(i) => (
-            `${i.name}(${i.birthYear})`
-        )}
-
-        </ ItemList>);
-
-        // const itemDetails = <ItemDetails getData={getPersonById} itemId={selectedPerson}/>;
         return (
             <ErrorBoundry>
-                <Row left={itemList} right={itemDetails}/>
+                <Row left={<PersonList onItemSelected={this.onPersonSelected} />} right={<PersonDetails itemId={selected}/>}/>
+                <Row left={<PlanetList onItemSelected={this.onPersonSelected} />} right={<PlanetDetails itemId={selected}/>}/>
+                <Row left={<StarshipList onItemSelected={this.onPersonSelected} />} right={<StarshipDetails itemId={selected}/>}/>
             </ErrorBoundry>
         )
     }

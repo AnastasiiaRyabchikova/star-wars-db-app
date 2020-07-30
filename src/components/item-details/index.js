@@ -1,2 +1,2 @@
-import ItemDetails, { Record } from './item-details';
-export  { ItemDetails, Record };
+import ItemDetails from './item-details';
+export default  ItemDetails;
