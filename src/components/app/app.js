@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../header';
 import RandomPlanet from '../random-planet';
-import PeoplePage from '../people-page';
+import { PeoplePage, PlanetsPage, StarshipsPage} from '../pages';
 import ErrorButton from '../error-button';
 import ErrorBoundry from '../error-boundry';
 import { SwapiServiceProvider } from '../swapi-service-context'
@@ -17,12 +17,12 @@ export default class App extends React.Component {
             <ErrorBoundry>
                 <SwapiServiceProvider value={this.swapiService}>
                     <div className='app container'>
-
                         <Header />
                         <RandomPlanet />
                         <ErrorButton />
                         <PeoplePage/>
-                        {/* <Row left={personDetails} right={starShipDetails}/> */}
+                        <PlanetsPage/>
+                        <StarshipsPage/>
                     </div>
                 </SwapiServiceProvider>
             </ErrorBoundry>
