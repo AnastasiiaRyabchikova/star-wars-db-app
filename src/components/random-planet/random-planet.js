@@ -11,6 +11,19 @@ class RandomPlanet extends React.Component {
         loading: true
     }
 
+    static defaultProps = {
+        updateInterval: 10000
+    }
+
+    static propTypes = {
+        updateInterval: (props, propName, componentName) => {
+            const value = props[propName];
+
+            if (typeof value === 'number' && !isNaN(value)) return null;
+            return new TypeError(`${componentName}: ${propName} must be a number, but it is ${value}`);
+        }
+    }
+    
     componentDidMount() {
         const { updateInterval } = this.props;
         this.updatePlanet();
@@ -67,11 +80,6 @@ const PlanetView = (planet) => {
         </React.Fragment>
     )
 }
-
-RandomPlanet.defaultProps = {
-    updateInterval: 10000
-}
-
 
 export default withSwapiServices({getData: 'getPlanetById'})(RandomPlanet);
 
