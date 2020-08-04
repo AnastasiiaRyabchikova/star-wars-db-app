@@ -4,7 +4,6 @@ import React from 'react';
 import ErrorButton from '../error-button'; 
 
 const ItemDetails =  ({item, image}) => {
-    console.log(item);
     const fields = Object.keys(item);
     const recordFields = fields
         .filter((key) => item[key] && key !== 'id')
