@@ -1,7 +1,6 @@
 import './people-page.css';
 import React from 'react';
 
-import SwapiService from '../../services/swapi-service'; 
 import Row from '../row';
 import ErrorBoundry from '../error-boundry';
 
@@ -16,7 +15,6 @@ import {
 
 
 export default class PeoplePage extends React.Component {
-    swapiService = new SwapiService();
 
     state = {
         selected: 5

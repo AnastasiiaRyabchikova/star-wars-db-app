@@ -2,7 +2,7 @@ import React from 'react';
 import LoadIndicator from '../load-indicator';
 import ErrorIndicator from '../load-indicator';
 
-const detailsWithData = (View, getData, getImageURL) => {
+const detailsWithData = (View) => {
     return class extends React.Component {
         state = {
             item: null,
@@ -23,7 +23,7 @@ const detailsWithData = (View, getData, getImageURL) => {
         }
         
         updateItem() {
-            const {itemId} = this.props;
+            const {itemId, getData, getImageURL} = this.props;
             if(!itemId) return;
             
             getData(itemId)

@@ -2,7 +2,7 @@ import React from 'react';
 import LoadIndicator from '../load-indicator';
 import ErrorIndicator from '../load-indicator';
 
-const withData = (View, getData) => {
+const withData = (View) => {
     return class extends React.Component {
         state = {
             data: null,
@@ -10,6 +10,7 @@ const withData = (View, getData) => {
         }
 
         componentDidMount() {
+            const { getData } = this.props;
             getData()
                 .then((data) => this.setState({data, error: false}))
                 .catch(this.onError)

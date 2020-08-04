@@ -2,11 +2,10 @@ import './random-planet.css';
 
 import React from 'react';
 
-import SwapiService from '../../services/swapi-service'; 
 import LoadIndicator from '../load-indicator'; 
 import ErrorBoundry from '../error-boundry';
-export default class RandomPlanet extends React.Component {
-    swapiService = new SwapiService();
+import { withSwapiServices } from '../hoc-helpers';
+class RandomPlanet extends React.Component {
     state = {
         planet: {},
         loading: true
@@ -25,9 +24,10 @@ export default class RandomPlanet extends React.Component {
         this.setState({error: true, loading: false});
     }
     updatePlanet = () => {
+        const { getData } = this.props;
         const id = Math.floor(Math.random() * 25) + 3;
-        this.swapiService
-            .getPlanetById(id)
+
+        getData(id)
             .then(this.onPlanetLoaded)
             .catch(this.onPlanetDisLoaded);
     }
@@ -64,3 +64,6 @@ const PlanetView = (planet) => {
         </React.Fragment>
     )
 }
+
+export default withSwapiServices(RandomPlanet, {getData: 'getPlanetById'});
+

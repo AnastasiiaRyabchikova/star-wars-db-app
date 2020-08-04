@@ -3,7 +3,7 @@ import './item-details.css';
 import React from 'react';
 import ErrorButton from '../error-button'; 
 
-const ItemDetails =  ({item, image, children}) => {
+const ItemDetails =  ({item, image}) => {
     const fields = Object.keys(item);
     const recordFields = fields
         .filter((key) => key !== 'id')
