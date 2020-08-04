@@ -4,9 +4,10 @@ import React from 'react';
 import ErrorButton from '../error-button'; 
 
 const ItemDetails =  ({item, image}) => {
+    console.log(item);
     const fields = Object.keys(item);
     const recordFields = fields
-        .filter((key) => key !== 'id')
+        .filter((key) => item[key] && key !== 'id')
         .map(key => {
             let itemSeparated = key.split('').map((letter) =>  (letter === letter.toUpperCase()) ? ' ' + letter : letter).join('');
             let label = itemSeparated[0].toUpperCase() + itemSeparated.slice(1);
