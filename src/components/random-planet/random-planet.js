@@ -1,6 +1,7 @@
 import './random-planet.css';
 
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import LoadIndicator from '../load-indicator'; 
 import ErrorBoundry from '../error-boundry';
@@ -16,12 +17,7 @@ class RandomPlanet extends React.Component {
     }
 
     static propTypes = {
-        updateInterval: (props, propName, componentName) => {
-            const value = props[propName];
-
-            if (typeof value === 'number' && !isNaN(value)) return null;
-            return new TypeError(`${componentName}: ${propName} must be a number, but it is ${value}`);
-        }
+        updateInterval: PropTypes.number
     }
     
     componentDidMount() {

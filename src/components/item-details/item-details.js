@@ -1,7 +1,8 @@
 import './item-details.css';
 
 import React from 'react';
-import ErrorButton from '../error-button'; 
+import ErrorButton from '../error-button';
+import PropTypes from 'prop-types';
 
 const ItemDetails =  ({item, image}) => {
     const fields = Object.keys(item);
@@ -32,6 +33,9 @@ const ItemDetails =  ({item, image}) => {
             <ErrorButton />
         </div>
     </div>)
+}
+ItemDetails.propTypes = {
+    item: PropTypes.object
 }
 
 export default ItemDetails;
