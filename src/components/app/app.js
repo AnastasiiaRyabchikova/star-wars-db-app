@@ -18,7 +18,7 @@ export default class App extends React.Component {
                 <SwapiServiceProvider value={this.swapiService}>
                     <div className='app container'>
                         <Header />
-                        <RandomPlanet />
+                        <RandomPlanet/>
                         <ErrorButton />
                         <PeoplePage/>
                         <PlanetsPage/>

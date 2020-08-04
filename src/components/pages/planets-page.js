@@ -6,7 +6,7 @@ import ErrorBoundry from '../error-boundry';
 
 import {
     PlanetDetails,
-    PlanetList,
+    PlanetsList,
 } from '../sw-components';
 
 
@@ -23,7 +23,7 @@ export default class PlanetPage extends React.Component {
 
         return (
             <ErrorBoundry>
-                <Row left={<PlanetList onItemSelected={this.onPersonSelected} />} right={<PlanetDetails itemId={selected}/>}/>
+                <Row left={<PlanetsList onItemSelected={this.onPersonSelected} />} right={<PlanetDetails itemId={selected}/>}/>
             </ErrorBoundry>
         )
     }

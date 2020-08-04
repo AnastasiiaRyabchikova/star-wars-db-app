@@ -10,9 +10,11 @@ class RandomPlanet extends React.Component {
         planet: {},
         loading: true
     }
+
     componentDidMount() {
-        this.updatePlanet()
-        this.interval = setInterval(this.updatePlanet, 5000);
+        const { updateInterval } = this.props;
+        this.updatePlanet();
+        this.interval = setInterval(this.updatePlanet, updateInterval);
     }
     componentWillUnmount() {
         clearInterval(this.interval);
@@ -44,6 +46,7 @@ class RandomPlanet extends React.Component {
             </ErrorBoundry>
         )
     }
+
 }
 
 const PlanetView = (planet) => {
@@ -65,5 +68,10 @@ const PlanetView = (planet) => {
     )
 }
 
-export default withSwapiServices(RandomPlanet, {getData: 'getPlanetById'});
+RandomPlanet.defaultProps = {
+    updateInterval: 10000
+}
+
+
+export default withSwapiServices({getData: 'getPlanetById'})(RandomPlanet);
 
