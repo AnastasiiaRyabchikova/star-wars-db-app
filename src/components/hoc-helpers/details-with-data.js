@@ -17,15 +17,15 @@ const detailsWithData = (View) => {
         }
 
         componentDidUpdate(prevProps) {
-            if(prevProps.itemId !== this.props.itemId) {
+            if ( prevProps.itemId !== this.props.itemId ) {
                 this.updateItem();
                 this.setState({loading: true});
             }
         }
         
         updateItem() {
-            const {itemId, getData, getImageURL} = this.props;
-            if(!itemId) return;
+            const { itemId, getData, getImageURL } = this.props;
+            if ( !itemId ) return;
             
             getData(itemId)
                 .then((item) => {
@@ -44,9 +44,12 @@ const detailsWithData = (View) => {
         
         render() {
            
-            const {item, loading, error, image} = this.state;
+            const { item, loading, error, image } = this.state;
 
-            if (error) {
+            if ( !item ) return <p>Выберите интересующий пункт</p>
+
+
+            if ( error ) {
                 return (
                     <div className='item-details jumbotron'>
                         <ErrorIndicator/>;
@@ -54,13 +57,16 @@ const detailsWithData = (View) => {
                 )
             }
     
-            if (loading) {
+            if ( loading ) {
                 return (
                     <div className='item-details jumbotron'>
                         <LoadIndicator/>
                     </div>
                 )
             }
+
+
+
     
             return <View {...this.props} item={item} image={image}/>
         }

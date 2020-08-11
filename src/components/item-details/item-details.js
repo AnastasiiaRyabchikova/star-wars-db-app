@@ -1,12 +1,10 @@
 import './item-details.css';
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import ErrorButton from '../error-button';
 import PropTypes from 'prop-types';
 
 const ItemDetails =  ({item, image}) => {
-    useEffect(() => console.log('mount'), []); 
-
     const fields = Object.keys(item);
     const recordFields = fields
         .filter((key) => item[key] && key !== 'id')
@@ -23,18 +21,20 @@ const ItemDetails =  ({item, image}) => {
     
     const records = recordFields.map(( {label, field} ) => <li key={field} className='list-group-item'>{label}:<span></span><span> {item[field]}</span></li>);
 
-    return (<div className='item-details jumbotron'>
-        <div className='item-details__image'>
-            <img src={image} alt={item.name}/>
+    return (
+        <div className='item-details jumbotron'>
+            <div className='item-details__image'>
+                <img src={image} alt={item.name}/>
+            </div>
+            <div className='item-details__wrap'>
+                <h2>{item.name}</h2>
+                <ul className='list-group list-group-flush'>
+                    { records }
+                </ul>
+                <ErrorButton />
+            </div>
         </div>
-        <div className='item-details__wrap'>
-            <h2>{item.name}</h2>
-            <ul className='list-group list-group-flush'>
-                { records }
-            </ul>
-            <ErrorButton />
-        </div>
-    </div>)
+    )
 }
 ItemDetails.propTypes = {
     item: PropTypes.object

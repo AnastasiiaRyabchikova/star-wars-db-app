@@ -1,4 +1,3 @@
-import './people-page.css';
 import React from 'react';
 
 import Row from '../row';
@@ -13,14 +12,13 @@ import {
 export default class PeoplePage extends React.Component {
 
     state = {
-        selected: 5
+        selected: null
     }
     onPersonSelected = (id) => {
         this.setState({selected: id});
     }
     render() {
         const {selected} = this.state;
-
         return (
             <ErrorBoundry>
                 <Row left={<PersonList onItemSelected={this.onPersonSelected} />} right={<PersonDetails itemId={selected}/>}/>
