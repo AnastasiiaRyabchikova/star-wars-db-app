@@ -1,8 +1,8 @@
 import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Header from '../header';
 import RandomPlanet from '../random-planet';
 import { PeoplePage, PlanetsPage, StarshipsPage} from '../pages';
-import ErrorButton from '../error-button';
 import ErrorBoundry from '../error-boundry';
 import { SwapiServiceProvider } from '../swapi-service-context'
 // import Row from '../row';
@@ -16,14 +16,15 @@ export default class App extends React.Component {
         return (
             <ErrorBoundry>
                 <SwapiServiceProvider value={this.swapiService}>
-                    <div className='app container'>
-                        <Header />
-                        <RandomPlanet/>
-                        <ErrorButton />
-                        <PeoplePage/>
-                        <PlanetsPage/>
-                        <StarshipsPage/>
-                    </div>
+                    <Router>
+                        <div className='app container'>
+                            <Header />
+                            <RandomPlanet/>
+                            <Route path="/people" component={ PeoplePage }/>
+                            <Route path="/planets" component={ PlanetsPage }/>
+                            <Route path="/starships" component={ StarshipsPage }/>
+                        </div>
+                    </Router>
                 </SwapiServiceProvider>
             </ErrorBoundry>
         )
