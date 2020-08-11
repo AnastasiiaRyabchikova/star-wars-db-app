@@ -12,7 +12,7 @@ const Header = () => {
     });
     return (
         <header className='header'>
-            <span className='logo'>Star Wars DB</span>
+            <Link to="/" className='logo'>Star Wars DB</Link>
             <nav>
                 {menuLinks}
             </nav>
