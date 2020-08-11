@@ -3,6 +3,7 @@ import LoadIndicator from '../load-indicator';
 import ErrorIndicator from '../load-indicator';
 
 const detailsWithData = (View) => {
+
     return class extends React.Component {
         state = {
             item: null,
@@ -42,6 +43,7 @@ const detailsWithData = (View) => {
         }
         
         render() {
+           
             const {item, loading, error, image} = this.state;
 
             if (error) {

@@ -1,19 +1,19 @@
 import './error-button.css';
 
-import React from 'react';
-export default class ErrorButton extends React.Component {
-    state = {
-        renderError: false
-    }
-    render() {
-        if(this.state.renderError) this.foo.bar = 0;
-        return (
-            <button 
-                className="btn error-button btn-danger btn-lg"
-                onClick={() => this.setState({renderError: true})}    
-            >
-                Trow Error
-            </button>
-        )
-    }
+import React, {useState} from 'react';
+
+const ErrorButton = () => {
+
+    const [renderError, setRenderError] = useState(false);
+
+    if ( renderError ) this.foo.bar = 0;
+    return (
+        <button 
+            className="btn error-button btn-danger btn-lg"
+            onClick={() => setRenderError(true)}    
+        >
+            Trow Error
+        </button>
+    )
 }
+export default ErrorButton;
