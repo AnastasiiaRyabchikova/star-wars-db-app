@@ -1,4 +1,6 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
+
 
 const SecretPage = ({isLoggedIn}) => {
     if ( isLoggedIn ) {
@@ -10,10 +12,7 @@ const SecretPage = ({isLoggedIn}) => {
         )
     }
     return (
-        <div className="jumbotron">
-            <h1>Very secret page</h1>
-            <p>GO AWAY</p>
-        </div>
+        <Redirect to="/login" />
     )
 }
 
