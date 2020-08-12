@@ -1,6 +1,16 @@
 .list-group__item {
+    padding: 0;
+    overflow: hidden;
+}
+
+.list-group__item a {
     cursor: pointer;
+    display: block;
+    padding: 0.75rem 1.25rem;
 }
-.list-group__item:hover {
-    opacity: 0.5;
+
+.list-group__item a:hover {
+    text-decoration: none;
+    background-color: #1f1f1f;
 }
+

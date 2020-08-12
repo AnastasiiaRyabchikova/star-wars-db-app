@@ -9,21 +9,10 @@ import {
 } from '../sw-components';
 
 
-export default class PlanetPage extends React.Component {
+const PlanetPage = ({itemId}) => (
+    <ErrorBoundry>
+        <Row left={<PlanetsList />} right={<PlanetDetails itemId={ itemId }/>}/>
+    </ErrorBoundry>
+);
 
-    state = {
-        selected: null
-    }
-    onPersonSelected = (id) => {
-        this.setState({selected: id});
-    }
-    render() {
-        const {selected} = this.state;
-        return (
-            <ErrorBoundry>
-                <Row left={<PlanetsList onItemSelected={this.onPersonSelected} />} right={<PlanetDetails itemId={selected}/>}/>
-            </ErrorBoundry>
-        )
-    }
-    
-}
+export default PlanetPage;

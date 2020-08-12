@@ -9,21 +9,12 @@ import {
 } from '../sw-components';
 
 
-export default class PeoplePage extends React.Component {
+const PeoplePage = ({ itemId }) => (
 
-    state = {
-        selected: null
-    }
-    onPersonSelected = (id) => {
-        this.setState({selected: id});
-    }
-    render() {
-        const {selected} = this.state;
-        return (
-            <ErrorBoundry>
-                <Row left={<PersonList onItemSelected={this.onPersonSelected} />} right={<PersonDetails itemId={selected}/>}/>
-            </ErrorBoundry>
-        )
-    }
-    
-}
+    <ErrorBoundry>
+        <Row left={ <PersonList /> } right={<PersonDetails itemId={ itemId } />}/>
+    </ErrorBoundry>
+
+)
+
+export default PeoplePage;

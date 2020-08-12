@@ -9,21 +9,10 @@ import {
 } from '../sw-components';
 
 
-export default class StarshipPage extends React.Component {
+const StarshipPage = ({itemId}) => (
+    <ErrorBoundry>
+        <Row left={<StarshipList/>} right={<StarshipDetails itemId={itemId}/>}/>
+    </ErrorBoundry>
+);
 
-    state = {
-        selected: null
-    }
-    onPersonSelected = (id) => {
-        this.setState({selected: id});
-    }
-    render() {
-        const {selected} = this.state;
-        return (
-            <ErrorBoundry>
-                <Row left={<StarshipList onItemSelected={this.onPersonSelected} />} right={<StarshipDetails itemId={selected}/>}/>
-            </ErrorBoundry>
-        )
-    }
-    
-}
+export default StarshipPage;

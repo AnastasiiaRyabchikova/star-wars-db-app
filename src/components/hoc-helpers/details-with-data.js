@@ -7,7 +7,7 @@ const detailsWithData = (View) => {
     return class extends React.Component {
         state = {
             item: null,
-            loading: true,
+            loading: false,
             error: false,
             image: null
         }
@@ -45,9 +45,10 @@ const detailsWithData = (View) => {
         render() {
            
             const { item, loading, error, image } = this.state;
+            console.log(item);
+            if ( !item && !loading ) return <p>Choose interesting item</p>
 
-            if ( !item ) return <p>Выберите интересующий пункт</p>
-
+            console.log(1111);
 
             if ( error ) {
                 return (

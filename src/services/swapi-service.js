@@ -60,7 +60,8 @@ export default class SwapiService {
           name: planet.name,
           population: planet.population,
           rotationPeriod: planet.rotation_period,
-          diameter: planet.diameter
+          diameter: planet.diameter,
+          category: 'planets'
 
       }
     }
@@ -70,7 +71,8 @@ export default class SwapiService {
           name: person.name,
           gender: person.gender,
           birthYear: person.birth_year,
-          eyeColor: person.eye_color
+          eyeColor: person.eye_color,
+          category: 'people'
       }
     }
     _transformStarShip(ship) {
@@ -85,6 +87,7 @@ export default class SwapiService {
         crew: ship.crew,
         passengers: ship.passengers,
         cargoCapacity: ship.cargoCapacity,
+        category: 'starships'
       }
     }
 }

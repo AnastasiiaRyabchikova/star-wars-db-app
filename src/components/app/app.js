@@ -18,12 +18,22 @@ export default class App extends React.Component {
                 <SwapiServiceProvider value={this.swapiService}>
                     <Router>
                         <div className='app container'>
+                            
                             <Header />
                             <RandomPlanet/>
+
                             <Route path="/" exact={true} render={ () => <h2>Welcome to Star DB</h2> }/>
-                            <Route path="/people" component={ PeoplePage }/>
-                            <Route path="/planets" component={ PlanetsPage }/>
-                            <Route path="/starships" component={ StarshipsPage }/>
+
+                            <Route path="/people" render={ () => <PeoplePage itemId={null} /> } exact />
+                            <Route path="/people/:id" render={  ({match}) => <PeoplePage itemId={match.params.id}/> } />
+
+
+                            <Route path="/planets" render={ () => <PlanetsPage itemId={null} /> } exact />
+                            <Route path="/planets/:id" render={ ({match}) => <PlanetsPage itemId={match.params.id}/> } />
+                            
+                            <Route path="/starships" render={ () => <StarshipsPage itemId={null}/> } exact />
+                            <Route path="/starships/:id" render={ ({match}) => <StarshipsPage itemId={match.params.id} /> } />
+                        
                         </div>
                     </Router>
                 </SwapiServiceProvider>
