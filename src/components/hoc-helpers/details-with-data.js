@@ -19,13 +19,27 @@ const detailsWithData = (View) => {
         componentDidUpdate(prevProps) {
             if ( prevProps.itemId !== this.props.itemId ) {
                 this.updateItem();
-                this.setState({loading: true});
+                this.setState({ loading: true });
+                if ( !this.props.itemId ) {
+                    this.setState({ loading: false });
+                }
             }
         }
         
         updateItem() {
             const { itemId, getData, getImageURL } = this.props;
-            if ( !itemId ) return;
+            console.log(itemId)
+            if ( !itemId ) {
+                this.setState(
+                    {
+                        item: null,
+                        loading: false,
+                        error: false,
+                        image: null
+                    }
+                );
+                return;
+            }
             
             getData(itemId)
                 .then((item) => {

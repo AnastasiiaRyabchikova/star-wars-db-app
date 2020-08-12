@@ -24,15 +24,11 @@ export default class App extends React.Component {
 
                             <Route path="/" exact={true} render={ () => <h2>Welcome to Star DB</h2> }/>
 
-                            <Route path="/people" render={ () => <PeoplePage itemId={null} /> } exact />
-                            <Route path="/people/:id" render={  ({match}) => <PeoplePage itemId={match.params.id}/> } />
+                            <Route path="/people/:id?" render={  ({match}) => <PeoplePage itemId={match.params.id}/> } />
 
-
-                            <Route path="/planets" render={ () => <PlanetsPage itemId={null} /> } exact />
-                            <Route path="/planets/:id" render={ ({match}) => <PlanetsPage itemId={match.params.id}/> } />
+                            <Route path="/planets/:id?" render={ ({match}) => <PlanetsPage itemId={match.params.id}/> } />
                             
-                            <Route path="/starships" render={ () => <StarshipsPage itemId={null}/> } exact />
-                            <Route path="/starships/:id" render={ ({match}) => <StarshipsPage itemId={match.params.id} /> } />
+                            <Route path="/starships/:id?" render={ ({match}) => <StarshipsPage itemId={match.params.id} /> } />
                         
                         </div>
                     </Router>
